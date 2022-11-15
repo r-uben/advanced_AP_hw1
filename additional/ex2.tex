@@ -1,0 +1,53 @@
+Using the appropriate expression for the stochastic discount factor and the NA-condition for P/C, find the equation that pins down $\kappa_c$.
+
+\solution By No Arbitrage
+\begin{equation}
+	P_t = \E_t[M_{t+1}\left(P_{t+1} + C_{t+1}\right)],
+\end{equation}
+which is equivalent to
+$$
+	\frac{P_t}{C_t} = \E_t\left[M_{t+1}\frac{P_{t+1}+C_{t+1}}{C_{t+1}}\frac{C_{t+1}}{C_t}\right].
+$$
+and is itself equivalent to 
+\begin{equation}
+	\e{pc_t} = \E_t\left[\e{m_{t+1} + \log\left(1+\e{pc_{t+1}}\right) + \Delta c_{t+1}}\right].
+\end{equation}
+Recall that
+$$
+	\log\left(1+\e{pc_{t+1}}\right)\approx \kappa_{0,c} + \kappa_{1,c}pc_{t+1},
+$$
+with 
+$\kappa_{0,c}$ and $\kappa_{1,c}$ as in (\ref{eq:kappas_c}). Also, conjecturing that $pc_{t} = \pcbar + b_c x_{t}$, with $b_c$ as in (\ref{eq:bc}), we arrive at
+$$
+	\begin{aligned}
+		\e{\pcbar + b_c x_t} &= \E_t\left[\e{\bar{m} - \frac{1}{\psi}x_t + \frac{\frac{1}{\psi}-\gamma}{1-\rho\kappa_{1,c}}\kappa_{1,c}\varepsilon_{t+1}^x - \gamma\varepsilon_{t+1}^c+\kappa_{0,c} + \kappa_{1,c} (\pcbar + b_c x_{t+1}) + \mu + x_{t} + \varepsilon_{t+1}^c}\right],\\
+		\e{\pcbar -\kappa_{0,c} - \kappa_{1,c}\pcbar}\e{b_c x_t} &= \e{[\bar{m}+\mu] + \left[\alpha + \rho\kappa_{1,c}b_c\right]x_t}\E_{t-1}\left[\e{ \left(b_c +\frac{\ies-\gamma}{1-\kappa_{1,c}\rho}\right)\kappa_{1,c}\varepsilon_{t+1}^x + (1-\gamma)\varepsilon_{t+1}^c}\right]\\
+		\e{\pcbar -\kappa_{0,c} - \kappa_{1,c}\pcbar}\e{b_c x_t} &= \e{[\bar{m}+\mu] + \left[\alpha + \rho\kappa_{1,c}b_c\right]x_t}\E_{t-1}\left[\e{ (1-\gamma)\frac{\kappa_{1,c}}{1-\kappa_{1,c}\rho} \varepsilon_{t+1}^x + (1-\gamma)\varepsilon_{t+1}^c}\right],\\
+	\end{aligned}
+$$ 
+Similarly as before,
+\begin{equation}
+	\pcbar - \kappa_{0,c} - \kappa_{1,c} \pcbar = \pcbar - \log(1+\e{\pcbar}) + \kappa_{1,d}\pcbar - \kappa_{1,d}\pcbar = \pcbar  - \log(1+\e{\pcbar}),
+\end{equation}
+and therefore
+$$
+\e{\pcbar -\kappa_{0,c} - \kappa_{1,c} \pcbar} = \frac{\e{\pcbar}}{1+\e{\pcbar}} = \kappa_{1,c}.
+$$
+Hence, by assumiing also that $x_t \approx \E_t[x_t]= 0$,
+$$
+\begin{aligned}
+		\kappa_{1,c} &= \e{\bar{m}+\mu}\E_{t-1}\left[\e{ (1-\gamma)\frac{\kappa_{1,c}}{1-\kappa_{1,c}\rho} \varepsilon_{t+1}^x + (1-\gamma)\varepsilon_{t+1}^c}\right]\\
+\end{aligned}
+$$
+I think it should be 
+$$
+	\kappa_{1,c} =\e{\bar{m}+\mu} \E_{t-1} \left[ \e{ (1-\gamma)(\varepsilon_{t+1}^x +\varepsilon_{t+1}^c)}\right],
+$$	
+but I may be missing some minus sign. In my derivations,
+$$
+	\kappa_{1,c} = \e{\bar{m}+\mu + \frac{1}{2}(1-\gamma)^2\left[\frac{\kappa_{1,c}^2}{(1-\kappa_{1,c})^2}\sigma_x^2 + \sigma_c^2\right] },
+$$
+but this has no closed form solution... In the case that the $\kappa_{1,c}$-term dissappears, we would have
+$$
+	\kappa_{1,c} = \e{\bar{m} + \mu + \frac{(1-\gamma)^2}{2}\left(\sigma_x^2 + \sigma_c^2\right)}.
+$$

@@ -1,0 +1,186 @@
+	We can express the stochastic discount factor in terms of $\xi_t$:
+\begin{equation}
+M_t = \delta\e{-\frac{1}{\psi}\Delta c_t}\left(\frac{\e{\xi_t + \Delta c_t}}{\E_{t-1}\left[\e{(1-\gamma)(\xi_t + \Delta c_t)}\right]^{\frac{1}{1-\gamma}}}\right)^{\frac{1}{\psi}-\gamma},
+\end{equation}
+and therefore
+$$
+\begin{aligned}
+	m_t &= \log\delta - \frac{1}{\psi}\Delta c_t + \left(\frac{1}{\psi}-\gamma\right)\left(\xi_t + \Delta c_t - \frac{1}{1-\gamma}\log\E_{t-1}\left[\e{(1-\gamma)(\xi_t + \Delta c_t)}\right]\right)\\
+	&=  \log\delta - \frac{1}{\psi}\Delta c_t + (1-\theta)(1-\gamma)\left(\xi_t + \Delta c_t\right) - (1-\theta)\log\E_{t-1}\left[\e{(1-\gamma)(\xi_t + \Delta c_t)}\right],
+\end{aligned}
+$$
+because
+$$
+1-\theta = 1-\frac{1-1/\psi}{1-\gamma} = \frac{1-\gamma - 1 + 1/\psi}{1-\gamma} = \frac{1/\psi - \gamma}{1-\gamma} = \frac{1-\gamma\psi}{\psi(1-\gamma)},
+$$
+which in turns implies that
+$$
+(1-\theta)(1-\gamma) = \frac{1}{\psi}-\gamma.
+$$	
+Hence, in \texttt{dynare++} we would write
+\begin{equation}
+	\boxed{\e{{m_t} + \frac{1}{\psi}\Delta c_t} = \delta \e{(1-\theta)(1-\gamma)(\xi + \Delta c_t) - (1-\theta)q_{t-1}},}
+\end{equation}	
+
+For the initial conditions, just compute the steady state, i.e., $m_t = \bar{m}$, $\forall t$. In that case,
+$$
+	\e{\bar{m}} = \e{\log\delta - \frac{1}{\psi}\mu},
+$$
+where the steady state for $\Delta c_t$ is assumed to be its mean, i.e., $\mu$, by stationarity. Hence,
+\begin{equation}
+	\bar{m} = \log \delta - \frac{\mu}{\psi}.
+\end{equation}
+%
+%\noindent \textbf{Important trying:} Now note that, assuming for the moment that $\xi_t$ and $\Delta c_t$ are independent (which I think it's not true),
+%$$
+%\E_{t-1}\left[\e{(1-\gamma)(\xi_t+\Delta c_t)}\right] = \E_{t-1}\left[\e{(1-\gamma)\xi_t}\right]\E_t\left[\e{(1-\gamma)\Delta c_t)}\right] = \e{(1-\gamma)\left(\mu + \frac{1}{2}\sigma^2\right)}\E_{t-1}\left[\e{(1-\gamma)\xi_t}\right],
+%$$
+%and therefore
+%$$
+%(1-\theta)\log\E_{t-1}\left[\e{(1-\gamma)(\xi_t + \Delta c_t)}\right] = \left(\frac{1}{\psi}-\gamma\right)\left(\mu + \frac{1}{2}\sigma^2\right) + (1-\theta)\E_t\left[\e{(1-\gamma)\xi_t}\right]
+%$$
+%The problem here is clearly that we don't know what
+%$$
+%\E_t\left[\e{(1-\gamma)\xi_t}\right]
+%$$
+%is. At least I don't know it.
+%
+%Now let me try another thing: Consider, as in Bansal and Yaron (2004), the stochastic discount factor to be
+%\begin{equation}
+%	M_{t} = \beta^{\frac{1}{\theta}} \e{-\frac{1}{\psi\theta}\Delta c_t}R_{c,t+1}^{\frac{1}{\theta}-1}.
+%\end{equation}
+%Note that
+%$$
+%\frac{1}{\theta} = \frac{1-\gamma}{1-\frac{1}{\psi}}	
+%$$
+%and
+%$$
+%\frac{1}{\theta}-1 = \frac{1-\gamma}{1-\frac{1}{\psi}}	-1 = \frac{\frac{1}{\psi}-\gamma}{1-\frac{1}{\psi}}
+%$$
+%and
+%$$
+%\frac{1}{\psi\theta} = \frac{1-\gamma}{\psi-1}.
+%$$
+%Therefore,
+%$$
+%m_t = \frac{1}{\theta} \log \beta - \frac{1}{\psi\theta}\Delta c_t + \frac{1-\theta}{\theta} r_{c,t+1}
+%$$
+%By no arbitrage,
+%$$
+%\E_t\left[\e{m_{t+1}+r_{c,t+1}}\right] = 1.	
+%$$
+%Now note that
+%$$
+%m_t + r_{c,t+1} = \frac{1}{\theta} \log \beta - \frac{1}{\psi\theta}\Delta c_t + \frac{1}{\theta} r_{c,t+1} = \frac{1}{\theta}\left(\log\beta - \frac{1}{\psi}\Delta c_{t} + r_{c,t+1}\right)
+%$$
+%Therefore,
+%$$
+%\e{\frac{1}{\theta}\log\delta}\E_t\left[\e{\frac{1}{\theta}\left(r_{c,t+1}- \frac{1}{\psi}\Delta c_{t} \right)}\right] = 1.	
+%$$
+%On the other hand,
+%$$
+%r_{c,t} = \log \left(\frac{P_{c,t+1}+C_{t+1}}{P_{t}}\right) = \log\left(1+\e{pc_{t+1}}\right) -pc_t + \Delta c_{t+1},
+%$$
+%where we can use the following approximation:
+%$$
+%\log\left(1+\e{pc_{t+1}}\right) \approx\log\left(1+\e{\widehat{pc}}\right) + \frac{\e{\widehat{pc}}}{1+\e{\widehat{pc}}}{\left(pc_t-\widehat{pc}\right)} = \kappa_{c,0} + \kappa_{1,c} pc_{t+1}.
+%$$
+%where 
+%$$
+%\widehat{pc}=\E[pc_t].
+%$$
+%Therefore, 
+%\begin{equation}
+%	r_{c,t} =\kappa_{c,0} + \kappa_{1,c}pc_{t+1} -pc_t + \Delta c_{t+1},
+%\end{equation}
+%with
+%$$
+%\kappa_{1,c} = \frac{\e{\widehat{pc}}}{1+\e{\widehat{pc}}}, \quad\quad \kappa_{0,c} = \log\left(1+\e{\widehat{pc}}\right) - \kappa_{1,c} \widehat{pc}.
+%$$
+%Hence,
+%\begin{equation}
+%	m_t + r_{c,t+1}= \frac{1}{\theta} \left(\log \beta+ \kappa_{0,c} + \kappa_{1,c}pc_{t+1} -pc_t + \left(1-\frac{1}{\psi}\right)\Delta c_{t+1}\right).
+%\end{equation}
+%In the No Arbitrage Equation:
+%\begin{equation}
+%	\e{\frac{1}{\theta}\left(\log\delta+ \kappa_{0,c}\right)}\E_t\left[\e{\frac{1}{\theta}\left(\kappa_{1,c}pc_{t+1} -pc_t + \left(1-\frac{1}{\psi}\right)\Delta c_{t+1}\right)}\right] = 1
+%\end{equation}
+%If we conjecture that $pd_{t} = \widehat{pc} + \alpha_c x_{t}$, then
+%$$
+%\begin{aligned}
+%	\kappa_{1,c}pc_{t+1} -pc_t + \left(1-\frac{1}{\psi}\right)\Delta c_{t+1} &= \kappa_{1,c}\widehat{pc} + \kappa_{1,c}\alpha_c x_{t+1} - \widehat{pc} - \alpha_c x_t + \left(1-\frac{1}{\psi}\right)\left(\mu + x_{t} + \varepsilon_{t+1}^c\right)\\
+%	&=(\kappa_{1,c}-1)\widehat{pc} + \left(1-\frac{1}{\psi}\right)\mu + \alpha_c\left(\kappa_{1,c}(\rho x_t + \varepsilon_{t+1}^x)-x_t\right) \\
+%	&+ \left(1-\frac{1}{\psi}\right)\left( x_t + \varepsilon_{t+1}^c\right)\\
+%	&=(\kappa_{1,c}-1)\widehat{pc} + \left(1-\frac{1}{\psi}\right)\mu + \left[\alpha(\kappa_{1,c}\rho - 1)+ \left(1-\frac{1}{\psi}\right)\right]x_t \\
+%	& + \alpha_c\kappa_{1,c}\varepsilon_{t+1}^x + \left(1-\frac{1}{\psi}\right)\varepsilon_{t+1}^c
+%\end{aligned}
+%$$
+%Therefore, 
+%$$
+%\e{\frac{1}{\theta}\left(\log\delta+ \kappa_{0,c} +(\kappa_{1,c}-1)\widehat{pc} + \left(1-\frac{1}{\psi}\right)\mu\right)}\e{\frac{1}{\theta}\left[\alpha(\kappa_{1,c}\rho - 1)+ \left(1-\frac{1}{\psi}\right)\right]x_t}\e{\frac{1}{2\theta^2}\left[\left(\alpha_c\kappa_{1,c}\right)^2 +\left(1-\frac{1}{\psi}\right)^2 \right]\sigma^2} = 1
+%$$
+%so a necessary condition is
+%$$
+%\alpha_C(\kappa_{1,c}\rho - 1)+ \left(1-\frac{1}{\psi}\right) = 0 \iff \alpha_c = \frac{1-\frac{1}{\psi}}{1-\kappa_{1,c}\rho}
+%$$
+%On the other hand, 
+%$$
+%\begin{aligned}
+%	r_{c,t+1} &=\kappa_{c,0} + \kappa_{1,c}(\widehat{pc} + \alpha_c x_{t+1}) - (\widehat{pc} + \alpha_cx_t) + \Delta c_{t+1}\\
+%	&= [\kappa_{c,0} + (\kappa_{1,c}-1)\widehat{pc} + \mu] + \alpha_c(\kappa_{1,c}\rho - 1)x_t + \kappa_{1,c}\alpha_c\varepsilon_{t+1}^x + \varepsilon_{t+1}^c 
+%\end{aligned}
+%$$
+%Note that
+%$$
+%\alpha_c(\kappa_{1,c}\rho - 1) = -\left(1-\frac{1}{\psi}\right)
+%$$
+%Hence,
+%\begin{equation}
+%	r_{c,t+1} = \bar{r} -\left(1-\frac{1}{\psi}\right)x_t + \kappa_{1,c}\frac{1-\frac{1}{\psi}}{1-\kappa_{1,c}\rho}\varepsilon_{t+1}^x + \varepsilon_{t+1}^c 
+%\end{equation}
+%where
+%\begin{equation}
+%	\begin{aligned}
+%		\bar{r} &= \kappa_{c,0} + (\kappa_{1,c}-1)\widehat{pc} + \mu \\
+%		&= \log\left(1+\e{\widehat{pc}}\right) - \kappa_{1,c} \widehat{pc} + (\kappa_{1,c}-1)\widehat{pc} + \mu \\
+%		&= \log\left(1+\e{\widehat{pc}}\right) - \hat{pc} + \mu\approx \mu
+%	\end{aligned}
+%\end{equation}
+%Now,
+%$$
+%\begin{aligned}
+%	m_t &= \frac{1}{\theta} \log \delta - \frac{1}{\psi\theta}\Delta c_t + \frac{1-\theta}{\theta} \left(\bar{r} -\left(1-\frac{1}{\psi}\right)x_t + \kappa_{1,c}\frac{1-\frac{1}{\psi}}{1-\kappa_{1,c}\rho}\varepsilon_{t+1}^x + \varepsilon_{t+1}^c \right)\\
+%	&=\frac{1}{\theta}\left[\left(\log\delta + (1-\theta)\bar{r}- \frac{1}{\psi}\mu\right) + \left(-\frac{1}{\psi_t} - \left(1-\frac{1}{\psi_t}\right)\right)x_t + \kappa_{1,c}\frac{1-\frac{1}{\psi}}{1-\kappa_{1,c}\rho}\varepsilon_{t+1}^x + \left(1-\frac{1}{\psi}\right)\varepsilon_{t+1}^c\right]\\
+%	&=\frac{1}{\theta}\left[\left(\log\delta + (1-\theta)\bar{r}- \frac{1}{\psi}\mu\right) - x_t + \kappa_{1,c}\frac{1-\frac{1}{\psi}}{1-\kappa_{1,c}\rho}\varepsilon_{t+1}^x + \left(1-\frac{1}{\psi}\right)\varepsilon_{t+1}^c\right]\\
+%	&= \bar{m}- \frac{1}{\theta}x_t + \kappa_{1,c}\frac{1-\gamma}{1-\kappa_{1,c}\rho} + (1-\gamma)\varepsilon_{t+1}^c
+%\end{aligned}
+%$$
+%where
+%\begin{equation}
+%	\bar{m} = \frac{1}{\theta}\left(\log\delta + (1-\theta)\bar{r}- \frac{1}{\psi}\mu\right)
+%\end{equation}
+%Now note that
+%$$
+%\frac{1}{\theta}\left(\log\delta + (1-\theta)\bar{r}- \frac{1}{\psi}\mu\right) = \frac{1}{\theta}\log\delta  + \frac{1}{\theta}\left((1-\theta) - \frac{1}{\psi}\right)\mu,
+%$$
+%where
+%$$
+%1-\theta-\frac{1}{\psi} = 1- \frac{1}{\psi} + \frac{1-\gamma}{1-\frac{1}{\psi}} 
+%$$
+%%	and
+%%	$$
+%%	\begin{aligned}
+%	%			\frac{1}{\theta}\left(\log\delta+ \kappa_{0,c} +(\kappa_{1,c}-1)\widehat{pc} + \left(1-\frac{1}{\psi}\right)\mu\right) + \frac{1}{2\theta^2}\left[\left(\alpha_c\kappa_{1,c}\right)^2 +\left(1-\frac{1}{\psi}\right)^2 \right]\sigma^2 &= 0\\
+%	%			\log\delta+ \kappa_{0,c} +(\kappa_{1,c}-1)\widehat{pc} + \left(1-\frac{1}{\psi}\right)\mu + \frac{1}{2\theta} \left[\left(\alpha_c\kappa_{1,c}\right)^2 +\left(1-\frac{1}{\psi}\right)^2 \right]\sigma^2&= 0
+%	%	\end{aligned}
+%%	$$
+%%	Now note that 
+%%	$$
+%%		\left(\alpha_c\kappa_{1,c}\right)^2 +\left(1-\frac{1}{\psi}\right)^2 = \left(1-\frac{1}{\psi}\right)^2\left[\frac{\kappa_{1,c}^2}{(1-\kappa_{1,c}\rho)^2}+1\right],
+%%	$$
+%%	and therefore
+%%	$$
+%%		\frac{1}{2\theta} \left[\left(\alpha_c\kappa_{1,c}\right)^2 +\left(1-\frac{1}{\psi}\right)^2 \right]\sigma^2 = \frac{1}{2\theta}\left(1-\frac{1}{\psi}\right)^2\left[\frac{\kappa_{1,c}^2}{(1-\kappa_{1,c}\rho)^2}+1\right] 
+%%	$$
+%%	I think this is unnecessary.
+%%	

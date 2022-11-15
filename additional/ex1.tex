@@ -1,0 +1,56 @@
+Using the appropriate no-arbitrage condition, derive the equation that allows us to pin-down the coefficient $\kappa_{1,d}$ for the Campbell and Shiller approximation in the Bansal-Yaron (2004) economy. Take $\kappa_{1,c}$ and the intercept of the SDF as known scalars.
+
+\solution  Under No Arbitrage,
+\begin{equation}
+		P_t = \E_t\left[M_{t+1}\left(P_{t+1}+ D_{t+1}\right)\right],
+\end{equation}
+which is equivalent to 
+\begin{equation}
+	\frac{P_t}{D_t} = \E_t\left[M_{t+1}\left(\frac{P_{t+1}+D_{t+1}}{D_{t+1}}\right)\frac{D_{t+1}}{D_t}\right] = \E_t\left[M_{t+1}\left(1 + \frac{P_{t+1}}{D_{t+1}}\right)\frac{D_{t+1}}{D_t}\right],
+\end{equation}
+i.e.
+\begin{equation}\label{eq:additional_ex1_eq1}
+	\e{pd_t} = \E_t\left[\e{m_{t+1} + \kappa_{0,d} + \kappa_{1,d} pd_{t+1} + \Delta d_{t+1}}\right],
+\end{equation}
+because
+$$
+	1 + \frac{P_{t+1}}{D_{t+1}} = \e{\log\left(1 + \e{pd_{t+1}}\right)},
+$$
+and
+$$
+	\log\left(1 + \e{pd_{t+1}}\right) \approx \log\left(1+\e{\pdbar}\right) + \frac{\e{\pdbar}}{1+\e{\pdbar}}\left(pd_{t+1}-\pdbar\right) = \kappa_{0,d} + \kappa_{1,d}pd_{t+1},
+$$
+with 
+\begin{equation}
+	\kappa_{1,d} = \frac{\e{\pdbar}}{1+\e{\pdbar}}, \quad\quad \kappa_{0,d} = \log\left(1+\e{\pdbar}\right) - \kappa_{1,d} \pdbar.
+\end{equation}
+As we usually do, let's conjecture that $pd_{t} = \pdbar + b_d x_t$. Therefore, equation (\ref{eq:additional_ex1_eq1}) becomes
+$$
+	\begin{aligned}
+		\e{\pdbar + b_d x_t} = \E_t\left[\e{m_{t+1} + \kappa_{0,d} + \kappa_{1,d}\left(\pdbar + b_d x_t\right) + \lambda x_t + \varepsilon_{t+1}^d}\right].
+	\end{aligned}
+$$
+Hence, by using our expression for the stochastic discount factor in (\ref{eq:sdf}),
+\begin{equation}\label{eq:additional_ex1_eq2}
+	\begin{aligned}
+		\e{\pdbar + b_d x_t} &= \E_t\left[\e{\bar{m} - \frac{1}{\psi}x_t + \frac{\frac{1}{\psi}-\gamma}{1-\rho\kappa_{1,c}}\kappa_{1,c}\varepsilon_{t+1}^x - \gamma\varepsilon_{t+1}^c+ \kappa_{0,d} + \kappa_{1,d}\left(\pdbar + b_d x_t\right) + \lambda x_t + \varepsilon_{t+1}^d}\right] \\
+		\e{\pdbar -\kappa_{0,d} - \kappa_{1,d} \pdbar}\e{b_c x_t} &= \e{\bar{m} + \left[\kappa_{1,d}b_d -\frac{1}{\psi}+ \lambda\right] x_t}\E_t\left[\e{\frac{\frac{1}{\psi}-\gamma}{1-\kappa_{1,c}\rho}\kappa_{1,c}\varepsilon_{t+1}^x -\gamma\varepsilon_{t+1}^c + \varepsilon_{t+1}^d} \right].
+	\end{aligned}
+\end{equation}
+Now note that
+\begin{equation}
+	\pdbar - \kappa_{0,d} - \kappa_{1,d} \pdbar = \pdbar - \log(1+\e{\pdbar}) + \kappa_{1,d}\pdbar - \kappa_{1,d}\pdbar = \pdbar  - \log(1+\e{\pdbar}),
+\end{equation}
+and therefore
+$$
+	\e{\pdbar -\kappa_{0,d} - \kappa_{1,d} \pdbar} = \frac{\e{\pdbar}}{1+\e{\pdbar}} = \kappa_{1,d}.
+$$
+Hence by also assuming that $x_t \approx \E[x_t] = 0$, (\ref{eq:additional_ex1_eq2}) becomes
+$$
+	\kappa_{1,d} = \e{\bar{m} + \frac{1}{2}\left[\frac{\ies-\gamma}{1-\kappa_{1,c}\rho}\right]^2\kappa_{1,x}^2\sigma_x^2 +\gamma^2\sigma_c^2 + \sigma_d^2}  .
+$$
+With our expression for $\bar{m}$ given in (\ref{eq:mbar}), we finally obtain\footnote{Remember that $\zeta= \frac{1}{\theta}$ where $\theta = \frac{1-\gamma}{\alpha}$ as in Bansal and Yaron (2004).}:
+\begin{equation}
+		\kappa_{1,d} = \e{\zeta\log\delta -\gamma\mu + \half\left[\frac{\ies-\gamma}{1-\kappa_{1,c}\rho}\right]^2\kappa_{1,c}^2\sigma_x^2 +\frac{\gamma^2}{2}\sigma_c^2 + \half\sigma_d^2} .
+\end{equation}
+

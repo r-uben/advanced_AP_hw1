@@ -1,0 +1,20 @@
+	By No Arbitrage, we know that 
+$$
+P_t = \E_t\left[M_{t+1}\left(P_{t+1}+C_{t+1}\right)\right],
+$$
+which implies that
+$$
+\frac{P_t}{C_t} = \E_t \left[M_{t+1}\left(\frac{P_{t+1}+C_{t+1}}{C_{t+1}}\right)\frac{C_{t+1}}{C_t}\right],
+$$
+and therefore, in \texttt{dynare++}
+\begin{equation}
+	\boxed{\e{pc_t} = \E_t\left[\e{m_{t+1}+\Delta c_{t+1}}\left(1+\e{pc_{t+1}}\right)\right].}
+\end{equation}
+For the initial values, let's compute the steady-state, i.e., $pc_t = \widebar{pc}$, $\forall t$. In that case,
+$$
+	\e{\widebar{pc}} = \e{\widebar{m}+\mu}\left(1+\e{\widebar{pc}}\right)\iff \e{\widebar{pc}}\left(1-\e{\widebar{m}+\mu}\right) = \e{\widebar{m}+\mu},
+$$
+and therefore
+\begin{equation}
+	\widebar{pc} = \log\left(\frac{\e{\widebar{m}+\mu}}{1-\e{\widebar{m}+\mu}}\right).
+\end{equation}

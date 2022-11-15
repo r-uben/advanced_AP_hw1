@@ -1,0 +1,28 @@
+	If we define the consumption ratio by
+$  
+\Xi_t := \frac{U_t}{C_t},
+$
+then it's clear that
+$$
+\Xi_t= \left[(1-\delta) + \delta\E_t\left[\Xi_t^{1-\gamma}\e{(1-\gamma)\Delta c_{t+1}}\right]^\theta\right]^{\frac{1}{\alpha}}.
+$$
+Hence, if we define $\xi_t:=\log \Xi_t$, we get the equation that we would include in \texttt{dynare++}
+\begin{equation}\label{eq:uc_dynare_1}
+	\e{\alpha \xi_t} = (1-\delta) + \delta\log \E_t\left[\e{(1-\gamma)(\xi_t + \Delta c_{t+1})}\right]^\theta.
+\end{equation}
+If we define
+$$
+	Q_t = \E_t\left[\e{(1-\gamma)(\xi_t + \Delta c_{t+1})}\right],
+$$
+then we can rewrite (\ref{eq:uc_dynare_1}) as
+\begin{equation}
+		\boxed{\e{\alpha \xi_t} = (1-\delta) + \delta\e{\theta q_t},} 
+\end{equation}
+where $q_t = \log Q_t$. For the initial conditions, just compute the steady state, i.e., $\xi_t = \bar{\xi}$, $\forall t$. In that case,
+$$
+	\e{\alpha \bar{\xi}} = (1-\delta) + \delta\e{\alpha(\bar{\xi}+\mu)} \iff (1-\delta\e{\alpha\mu})\e{\alpha\bar{\xi}} = 1-\delta \iff \e{\alpha\bar{\xi}} = \frac{1-\delta}{1-\delta\e{\alpha\mu}}.
+$$
+and therefore
+\begin{equation}
+	\bar{\xi} = \frac{1}{\alpha}\left(\log(1-\delta) - \log(1-\delta\e{\alpha\mu})\right).
+\end{equation}
