@@ -1,7 +1,7 @@
 var x, dc, dd, uc, m, pd, pc, rm, exr, rf, rc, Q;
 varexo eps_c, eps_x, eps_d;
 
-parameters delta, theta, gamma, psi, mu, rho, phi;//, k0, k1;
+parameters delta, theta, gamma, psi, mu, rho, phi; //, k0, k1;
 
 gamma = 10;
 psi = 1.5;

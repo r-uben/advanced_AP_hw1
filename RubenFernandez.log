@@ -1,4 +1,4 @@
-Starting Dynare (version 5.2).
+Starting Dynare (version 5.4).
 Calling Dynare with arguments: none
 Starting preprocessing of the model file ...
 Found 13 equation(s).
@@ -9,4 +9,125 @@ Processing outputs ...
 done
 Preprocessing completed.
 
-Total computing time : 0h00m00s
+
+STEADY-STATE RESULTS:
+
+dc  		 0.0015
+dd  		 0.0015
+x   		 0
+uc  		 2.07719
+m   		 -0.0020005
+pd  		 7.59965
+pc  		 7.59965
+rm  		 0.0020005
+exr 		 0
+rf  		 0.0020005
+rc  		 0.0020005
+Q   		 7.50103e-09
+q   		 -18.7082
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  6.723697e-18.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dyn_first_order_solver', '/Applications/Dynare/5.4/matlab/dyn_first_order_solver.m', 297)" style="font-weight:bold">dyn_first_order_solver</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/dyn_first_order_solver.m',297,0)">line 297</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stochastic_solvers', '/Applications/Dynare/5.4/matlab/stochastic_solvers.m', 251)" style="font-weight:bold">stochastic_solvers</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/stochastic_solvers.m',251,0)">line 251</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('resol', '/Applications/Dynare/5.4/matlab/resol.m', 119)" style="font-weight:bold">resol</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/resol.m',119,0)">line 119</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stoch_simul', '/Applications/Dynare/5.4/matlab/stoch_simul.m', 109)" style="font-weight:bold">stoch_simul</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/stoch_simul.m',109,0)">line 109</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RubenFernandez.driver', '/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/+RubenFernandez/driver.m', 295)" style="font-weight:bold">RubenFernandez.driver</a> (<a href="matlab: opentoline('/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/+RubenFernandez/driver.m',295,0)">line 295</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/5.4/matlab/dynare.m', 278)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/dynare.m',278,0)">line 278</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_RubenFernandez', '/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/Main_RubenFernandez.m', 132)" style="font-weight:bold">Main_RubenFernandez</a> (<a href="matlab: opentoline('/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/Main_RubenFernandez.m',132,0)">line 132</a>)
+] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  6.723697e-18.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dyn_second_order_solver', '/Applications/Dynare/5.4/matlab/dyn_second_order_solver.m', 99)" style="font-weight:bold">dyn_second_order_solver</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/dyn_second_order_solver.m',99,0)">line 99</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stochastic_solvers', '/Applications/Dynare/5.4/matlab/stochastic_solvers.m', 259)" style="font-weight:bold">stochastic_solvers</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/stochastic_solvers.m',259,0)">line 259</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('resol', '/Applications/Dynare/5.4/matlab/resol.m', 119)" style="font-weight:bold">resol</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/resol.m',119,0)">line 119</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stoch_simul', '/Applications/Dynare/5.4/matlab/stoch_simul.m', 109)" style="font-weight:bold">stoch_simul</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/stoch_simul.m',109,0)">line 109</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RubenFernandez.driver', '/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/+RubenFernandez/driver.m', 295)" style="font-weight:bold">RubenFernandez.driver</a> (<a href="matlab: opentoline('/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/+RubenFernandez/driver.m',295,0)">line 295</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/5.4/matlab/dynare.m', 278)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/dynare.m',278,0)">line 278</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_RubenFernandez', '/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/Main_RubenFernandez.m', 132)" style="font-weight:bold">Main_RubenFernandez</a> (<a href="matlab: opentoline('/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/Main_RubenFernandez.m',132,0)">line 132</a>)
+] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  6.723697e-18.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dyn_second_order_solver', '/Applications/Dynare/5.4/matlab/dyn_second_order_solver.m', 107)" style="font-weight:bold">dyn_second_order_solver</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/dyn_second_order_solver.m',107,0)">line 107</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stochastic_solvers', '/Applications/Dynare/5.4/matlab/stochastic_solvers.m', 259)" style="font-weight:bold">stochastic_solvers</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/stochastic_solvers.m',259,0)">line 259</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('resol', '/Applications/Dynare/5.4/matlab/resol.m', 119)" style="font-weight:bold">resol</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/resol.m',119,0)">line 119</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stoch_simul', '/Applications/Dynare/5.4/matlab/stoch_simul.m', 109)" style="font-weight:bold">stoch_simul</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/stoch_simul.m',109,0)">line 109</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RubenFernandez.driver', '/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/+RubenFernandez/driver.m', 295)" style="font-weight:bold">RubenFernandez.driver</a> (<a href="matlab: opentoline('/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/+RubenFernandez/driver.m',295,0)">line 295</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/5.4/matlab/dynare.m', 278)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/dynare.m',278,0)">line 278</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_RubenFernandez', '/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/Main_RubenFernandez.m', 132)" style="font-weight:bold">Main_RubenFernandez</a> (<a href="matlab: opentoline('/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/Main_RubenFernandez.m',132,0)">line 132</a>)
+] 
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  3.839702e-21.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dyn_second_order_solver', '/Applications/Dynare/5.4/matlab/dyn_second_order_solver.m', 124)" style="font-weight:bold">dyn_second_order_solver</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/dyn_second_order_solver.m',124,0)">line 124</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stochastic_solvers', '/Applications/Dynare/5.4/matlab/stochastic_solvers.m', 259)" style="font-weight:bold">stochastic_solvers</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/stochastic_solvers.m',259,0)">line 259</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('resol', '/Applications/Dynare/5.4/matlab/resol.m', 119)" style="font-weight:bold">resol</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/resol.m',119,0)">line 119</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stoch_simul', '/Applications/Dynare/5.4/matlab/stoch_simul.m', 109)" style="font-weight:bold">stoch_simul</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/stoch_simul.m',109,0)">line 109</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('RubenFernandez.driver', '/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/+RubenFernandez/driver.m', 295)" style="font-weight:bold">RubenFernandez.driver</a> (<a href="matlab: opentoline('/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/+RubenFernandez/driver.m',295,0)">line 295</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/5.4/matlab/dynare.m', 278)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/5.4/matlab/dynare.m',278,0)">line 278</a>)
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_RubenFernandez', '/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/Main_RubenFernandez.m', 132)" style="font-weight:bold">Main_RubenFernandez</a> (<a href="matlab: opentoline('/Users/ruben/Library/CloudStorage/Dropbox/courses/advanced_AP/advanced_AP_hw1/Main_RubenFernandez.m',132,0)">line 132</a>)
+] 
+
+MODEL SUMMARY
+
+  Number of variables:         13
+  Number of stochastic shocks: 3
+  Number of state variables:   5
+  Number of jumpers:           6
+  Number of static variables:  4
+
+
+MATRIX OF COVARIANCE OF EXOGENOUS SHOCKS
+Variables       eps_c     eps_x     eps_d
+eps_c        0.000000  0.000000  0.000000
+eps_x        0.000000  0.000000  0.000000
+eps_d        0.000000  0.000000  0.000000
+
+POLICY AND TRANSITION FUNCTIONS
+                                  dc              dd               x              uc               m              pd              pc              rm             exr              rf              rc               Q               q
+Constant                    0.001500        0.001500               0        2.077192       -0.002001        7.599652        7.599652        0.002001               0        0.002001        0.002001               0      -18.708225
+x(-1)                       1.000000        2.000000        0.980000       47.803701     -456.167877       63.769481       15.942131       65.737573       65.737573        0.653340       16.934154       -0.000003     -430.448636
+rf(-1)                             0               0               0               0               0               0               0               0       -1.000000               0               0               0               0
+q(-1)                              0               0               0               0       -1.037037               0               0               0               0               0               0               0               0
+pd(-1)                             0               0               0               0               0               0               0       -1.000000       -1.000000               0               0               0               0
+pc(-1)                             0               0               0               0               0               0               0               0               0               0       -1.000000               0               0
+eps_c                       1.000000               0               0               0      -10.000000               0               0               0               0               0        1.000000               0               0
+eps_x                              0               0        1.000000       48.779287     -455.273350       65.070906       16.267487       65.038346       65.038346        0.666667       16.259347       -0.000003     -439.233308
+eps_d                              0        1.000000               0               0               0               0               0        1.000000        1.000000               0               0               0               0
+x(-1),x(-1)                        0               0               0        4.749151      -44.325409       24.296113        1.452509       25.300846       25.300846        0.002820        1.515336        0.000695      -41.047043
+eps_x,eps_x                        0               0               0        4.945286      -46.156005       25.300846        1.515336       26.347006       26.347006               0        1.580752        0.000723      -42.742359
+x(-1),eps_x                        0               0               0        9.692453      -90.462895       49.586781        2.967181       51.637255       51.637255        0.002877        3.095398        0.001418      -83.772249
+
+
+APPROXIMATED THEORETICAL MOMENTS
+VARIABLE         MEAN  STD. DEV.   VARIANCE
+dc             0.0015     0.0000     0.0000
+dd             0.0015     0.0000     0.0000
+x              0.0000     0.0000     0.0000
+uc             2.0772     0.0000     0.0000
+m             -0.0020     0.0000     0.0000
+pd             7.5997     0.0000     0.0000
+pc             7.5997     0.0000     0.0000
+rm             0.0020     0.0000     0.0000
+exr            0.0000     0.0000     0.0000
+rf             0.0020     0.0000     0.0000
+rc             0.0020     0.0000     0.0000
+Q              0.0000     0.0000     0.0000
+q            -18.7082     0.0000     0.0000
+
+
+
+APPROXIMATED VARIANCE DECOMPOSITION (in percent)
+        eps_c   eps_x   eps_d
+dc       3.81   96.19    0.00
+dd       0.00   99.02    0.98
+x        0.00  100.00    0.00
+uc       0.00  100.00    0.00
+m        0.05   99.95    0.00
+pd       0.00  100.00    0.00
+pc       0.00  100.00    0.00
+rm       0.00   99.98    0.02
+exr      0.00   99.98    0.02
+rf       0.00  100.00    0.00
+rc       0.36   99.64    0.00
+Q        0.00  100.00    0.00
+q        0.00  100.00    0.00
+
+All endogenous are constant or non stationary, not displaying correlations and auto-correlations
+
+Total computing time : 0h00m01s
+Note: warning(s) encountered in MATLAB/Octave code

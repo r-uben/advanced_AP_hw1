@@ -1,29 +1,10 @@
-%% NECESARRY PATHS:
-dynare_path = ':/Applications/Dynare/5.2/dynare++';
-pdflatex_path = ':/usr/local/texlive/2019/bin/x86_64-darwin';
-matlab_path = '/Users/ruben/Documents/MATLAB';
-alternative_dynare_path = '/Users/ruben/Documents/MATLAB/dynare';
-
-
-PATH = getenv('PATH');
-if not(contains(PATH, dynare_path))
-    setenv('PATH', [PATH dynare_path]);
-end
-if not(contains(PATH, pdflatex_path))
-    setenv('PATH', [PATH pdflatex_path]);
-end
-if not(contains(PATH, matlab_path))
-    setenv('PATH', [PATH matlab_path]);
-end
-
-if not(contains(PATH, pdflatex_path))
-    setenv('PATH', [PATH alternative_dynare_path]);
-end
-
-
-clc
+clc 
 clear all
 
+addpath /Applications/Dynare/5.4/matlab/
+old_path = getenv("PATH");
+new_path = [getenv('PATH') ':/Applications/Dynare/5.4/dynare++'];
+setenv("PATH", new_path)
 
 %% Options for this code
  N = 10000; % number of periods for simulations
@@ -134,6 +115,9 @@ fprintf(fid,' 0 %e 0 \n', sigma_x^2);
 fprintf(fid,' 0 0 %e];  \n', sigma_d^2);
 fprintf(fid,'  \n');
 fprintf(fid,'order   = 2;  \n');
+%fprintf(fid, 'steady;\n');
+%fprintf(fid, 'options_.steady.tol = 1e-10;\n'); %// Setting the tolerance level for steady-state computation
+%fprintf(fid, 'stoch_simul(order=2, replic=3);'); %// Use order=1 or order=2, periods for simulation, and the number of replications
 fclose(fid);
 
 % Delete previous results from the folder
@@ -145,6 +129,8 @@ end
 % Solve and load the model
 !dynare++ --per 15 --sim 3 --ss-tol 1e-10 RubenFernandez.mod
 load RubenFernandez.mat
+%dynare RubenFernandez.mod
+%load RubenFernandez/Output/RubenFernandez_results.mat
 
 
 
@@ -233,49 +219,59 @@ order   = 2;
 
 tab = fopen('tab/results.tex', 'w+');
 
-caption = ['This table is supposed to replicate Bansal and Yaron (2004) results. They' ...
+caption = ['This table is supposed to replicate Bansal and Yaron (2004) results. They ' ...
     'have been obtained by running the model in \texttt{dynare++} using 1200 number of ' ...
     'periods of simulations repeated 500 times. The parameters of the model are fixed as' ...
     'in Bansal and Yaron (2004), i.e., $\delta = 0.999$, $\gamma = 10$, $\psi = 1.5$, ' ...
     '$\phi = 2$. The standard deviation of the shocks, $\varepsilon_t^c$, $\varepsilon_t^x$ and ' ...
-    '$\varepsilon_t^d$ are, respectively, $\sigma_c = 0.0059$, $\sigma_x = 0.0003$, and $\sigma_d = 0.036$.' ...
-    'All the shocks are supposed to be uncorrelated. Finally, we set $\rho = 0.98$ and $\mu = 0.0015$.'];
+    '$\varepsilon_t^d$ are, respectively, $\sigma_c = 0.0059$, $\sigma_x = 0.0003$, and $\sigma_d = 0.036$. ' ...
+    'All the shocks are supposed to be uncorrelated. We set $\rho = 0.98$ and $\mu = 0.0015$. ' ...
+    'All results are given in annualised percentage units.'];
 
 fprintf(tab, '%s\n', '\begin{table}[h!]');
 fprintf(tab, '%s\n', '\captionsetup{font=small, width=0.75\textwidth}');
 fprintf(tab, '%s%s%s\n', '\caption{', caption, '} \vspace{0.25cm}');
 fprintf(tab, '%s\n', '\centering');
 fprintf(tab, '%s\n', '\def\arraystretch{1.5}');
-fprintf(tab, '%s\n', '\begin{tabular}{ccccc}' );
-fprintf(tab, '%s\n', '& (1) & (2) & (3) & (4) \\        ');
+fprintf(tab, '%s\n', '\begin{tabular}{l|cc}' );
 fprintf(tab, '%s\n', '\hline');
-fprintf(tab, '%s\n', 'Variable & Mean SS & Std SS & Mean LS & Std LS \\');
-fprintf(tab, '%s\n', '\hline');
+fprintf(tab, '%s\n', ' & Bootsrapped Mean & Long sample Mean \\');
+fprintf(tab, '%s\n', '\toprule');
 for i=1:5
     if results.Variable(i,:) == 'dc '
-        var = '$\Delta c_{t+1}$';
+        var = 'Consumption Growth, $\frac{C_{t+1}}{C_t}$';
     end
     if results.Variable(i,:) == 'dd '
-        var = '$\Delta d_{t+1}$';
+        var = 'Dividend Growth, $\frac{D_{t+1}}{D_t}$';
     end
     if results.Variable(i,:) == 'rc '
-        var = '$r_{c}$';
+        var = 'Return on Consumption, $R_t^{C}$';
     end
     if results.Variable(i,:) == 'rm '
-        var = '$r_m$';
+        var = 'Return on Dividends, $R_t^D$';
     end
     if results.Variable(i,:) == 'df '
-        var = '$r_f$';
+        var = '$Risk-free Rate, $R_t^f$';
     end
-    fprintf(tab, '%s %s %s %s %s %s %s %s %s %s \n', var, '&' ,results.Mean_SS(i,:), '&', results.Std_SS(i,:), '&', results.Mean_LS(i,:), '&', results.Std_LS(i,:), '\\ ');
-    if i==5
-    fprintf(tab,'%s\n','\hline');
+    fprintf(tab, '%s %s %s %s %s %s %s %s %s %s \n', var, '& $' ,results.Mean_SS(i,:), ')$ & $(', results.Mean_LS(i,:),')$ \\ ');
+    fprintf(tab, '%s %s %s %s %s %s %s %s %s %s \n', ' ', '& $(' ,results.Std_SS(i,:), ')$ & $(', results.Std_LS(i,:),')$ \\ ');
+     if i==5
+    fprintf(tab,'%s\n','\bottomrule');
     end
 end
 fprintf(tab,'%s\n', '\end{tabular}');
 fprintf(tab, '%s\n','\end{table}');
 
 %% PDF LATEX
-system('pdflatex Main_RubenFernandez.tex');
+% Here you should put the appropriate directory where pdflatex executable
+% is located.
+[status, cmdout] = system('/usr/local/texlive/2022/bin/universal-darwin/pdflatex Main_RubenFernandez.tex > /dev/null');
+
+if status == 0
+    fprintf('Compilation successful.\n');
+else
+    fprintf('Compilation failed.\n');
+    disp(cmdout); % This will display the error output from LaTeX
+end
 system('open Main_RubenFernandez.pdf');
 
